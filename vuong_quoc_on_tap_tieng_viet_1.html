@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vương quốc Ôn tập Tiếng Việt</title>
+<style>
+:root{--ink:#26345b;--pink:#ff7eb6;--yellow:#ffd65a;--blue:#72d6f4;--green:#8fe3b0;--purple:#a99bff;--paper:#fffdf6}
+*{box-sizing:border-box} body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff1f7,#eaf9ff 55%,#fff8d9);min-height:100vh}
+header{padding:28px 16px 22px;text-align:center;background:linear-gradient(120deg,#ff9bc8,#9fe7f8);border-bottom:5px solid #fff;position:relative;overflow:hidden}
+header:before,header:after{content:"✦";position:absolute;font-size:52px;color:#fff8b5;opacity:.9}header:before{left:7%;top:12px}header:after{right:8%;bottom:5px}
+h1{font-size:clamp(1.8rem,5vw,3.2rem);margin:0 0 8px;text-shadow:2px 3px #fff;font-weight:900}.subtitle{font-size:1.05rem;font-weight:700}
+.wrap{max-width:1100px;margin:22px auto;padding:0 14px 50px}.topbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#fff;border:3px solid #fff;border-radius:18px;padding:13px 17px;box-shadow:0 5px 0 #d8e5f4;margin-bottom:18px}.progress{height:12px;background:#e9edf8;border-radius:99px;overflow:hidden;flex:1;min-width:140px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff82b6,#ffc94f,#71d9b4);transition:width .3s}
+.pill{background:#fff1a9;padding:8px 13px;border-radius:999px;font-weight:900}.section{background:var(--paper);border:3px solid white;border-radius:24px;padding:clamp(16px,3vw,28px);box-shadow:0 7px 0 #d9e7f1;margin:20px 0}.section h2{margin:0 0 8px;font-size:clamp(1.35rem,3vw,2rem)}.intro{margin:0 0 18px;line-height:1.55}.mascot{font-size:2.2rem;vertical-align:middle}.matching-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.word-column{display:grid;gap:9px}.word-btn{font-size:1.08rem;font-weight:800;border:2px solid #dce6f5;background:#fff;border-radius:14px;padding:12px 10px;cursor:pointer;transition:.15s;min-height:48px}.word-btn:hover{transform:translateY(-2px);border-color:#ff91bd}.word-btn.selected{background:#fff0a9;border-color:#e8b82c}.word-btn.matched{background:#dff9e9;border-color:#69c58e;cursor:default}.word-btn.wrong{animation:shake .25s;border-color:#f26a78;background:#ffe5e7}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}.match-status{font-weight:800;margin:12px 0;color:#6554b5}.fill-list{display:grid;gap:12px}.fill-row{display:grid;grid-template-columns:65px 1fr;gap:10px;align-items:center;background:#f1f8ff;padding:12px;border-radius:14px}.num{background:#a99bff;color:white;border-radius:12px;padding:9px;text-align:center;font-weight:900}.fill-row p{margin:0;font-size:1.04rem;line-height:1.6}.fill-row input{width:110px;max-width:40%;padding:7px 8px;border:2px solid #cbd8f1;border-radius:9px;font:inherit;font-weight:800;text-align:center;background:#fff}.fill-row input:focus{outline:3px solid #d9d1ff}.question{padding:15px;border-radius:16px;background:#f7f5ff;border:2px solid #e6e0ff;margin:13px 0}.question p{font-weight:800;margin:0 0 12px;line-height:1.5}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.option{display:flex;align-items:flex-start;gap:9px;background:#fff;border:2px solid #e2e7f2;border-radius:12px;padding:10px;cursor:pointer;line-height:1.4}.option:has(input:checked){background:#fff3bf;border-color:#e9bd3d}.option input{margin-top:4px;accent-color:#8a7cf6}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:24px 0}.btn{border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 4px 0 #c3d0e3;transition:.15s}.btn:hover{transform:translateY(-2px)}.primary{background:#ff8fbd;color:#fff}.secondary{background:#fff0a8}.result{display:none;text-align:center;background:#fff;border:4px dashed #ffb6d5;border-radius:22px;padding:24px;margin:20px 0}.result.show{display:block}.score{font-size:2.5rem;font-weight:1000;color:#6e5be8}.feedback{font-size:1.1rem;font-weight:800}.small{font-size:.9rem;color:#687394}footer{text-align:center;padding:20px;color:#6c7897}.notice{font-size:.9rem;background:#fff7d9;border-radius:12px;padding:10px 12px;margin-top:12px;line-height:1.5}
+@media(max-width:600px){.matching-grid{gap:8px}.word-btn{font-size:.98rem;padding:10px 5px}.fill-row{grid-template-columns:45px 1fr;padding:9px}.options{grid-template-columns:1fr}.fill-row input{width:95px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌈 VƯƠNG QUỐC ÔN TẬP 🌈</h1>
+  <div class="subtitle">Cùng Ngựa Con và Trâu Vàng chinh phục Tiếng Việt!</div>
+</header>
+<main class="wrap">
+  <div class="topbar">
+    <span class="pill">⭐ Điểm: <span id="liveScore">0</span></span>
+    <div class="progress" aria-label="Tiến độ làm bài"><span id="progressBar"></span></div>
+    <span class="pill">📚 3 phần thử thách</span>
+  </div>
+
+  <section class="section" id="part1">
+    <h2><span class="mascot">🐴</span> Phần 1: Ngựa Con Dũng Cảm</h2>
+    <p class="intro">Em hãy lần lượt chọn một ô ở cột bên trái rồi chọn ô phù hợp ở cột bên phải để tạo thành từ đúng nhé!</p>
+    <div class="matching-grid">
+      <div class="word-column" id="leftWords" aria-label="Cột từ bên trái"></div>
+      <div class="word-column" id="rightWords" aria-label="Cột từ bên phải"></div>
+    </div>
+    <div class="match-status" id="matchStatus">Đã nối đúng 0/10 cặp. Chọn một từ ở mỗi cột để nối nhé!</div>
+  </section>
+
+  <section class="section" id="part2">
+    <h2><span class="mascot">🐃</span> Phần 2: Trâu Vàng Uyên Bác</h2>
+    <p class="intro">Em hãy điền tiếng còn thiếu để hoàn thành câu. Chỉ cần điền phần còn thiếu trong mỗi ô.</p>
+    <div class="fill-list" id="fillList"></div>
+    <div class="notice">💡 Mẹo nhỏ: Đọc lại cả câu sau khi điền để kiểm tra xem câu có đúng nghĩa và đúng chính tả không nhé.</div>
+  </section>
+
+  <section class="section" id="part3">
+    <h2><span class="mascot">🦉</span> Phần 3: Trắc Nghiệm</h2>
+    <p class="intro">Đọc kĩ câu hỏi và chọn một đáp án đúng nhất.</p>
+    <div id="quiz"></div>
+    <div class="notice">📌 Câu 10 trong đề gốc có nhắc đến hình ảnh nhưng hình chưa được đính kèm. Tạm thời em hãy chọn theo đáp án đã cung cấp; nên bổ sung hình gốc trước khi cho học sinh làm chính thức.</div>
+  </section>
+
+  <div class="actions">
+    <button class="btn primary" onclick="checkAll()">🎉 Nộp bài – Xem kết quả</button>
+    <button class="btn secondary" onclick="resetAll()">🔄 Làm lại từ đầu</button>
+  </div>
+  <div class="result" id="result" aria-live="polite">
+    <div style="font-size:3rem" id="resultEmoji">🏆</div>
+    <h2 id="resultTitle">Hoàn thành thử thách!</h2>
+    <div class="score" id="finalScore">0/30</div>
+    <p class="feedback" id="feedback"></p>
+    <p id="detail"></p>
+    <button class="btn secondary" onclick="showAnswers()">📖 Xem đáp án</button>
+    <div id="answerKey" style="display:none;text-align:left;margin-top:16px;line-height:1.8"></div>
+  </div>
+  <footer>🌟 Cố gắng mỗi ngày – tiến bộ từng chút một! 🌟</footer>
+</main>
+<script>
+const pairs=[
+ ['bậc','thang'],['giấc','mơ'],['tấm','thiệp'],['bác','sĩ'],['ấm','áp'],
+ ['búp','bê'],['mát','mẻ'],['nhà','thơ'],['công','an'],['nóng','nực']
+];
+const fills=[
+ {before:'Bò bê ở',after:'ờ đê',answer:'b',sentence:'Bò bê ở bờ đê'},
+ {before:'Bố mắc',after:'èm cửa cho bà',answer:'r',sentence:'Bố mắc rèm cửa cho bà'},
+ {before:'Ve sầu',after:'ăm chỉ hát ca',answer:'ch',sentence:'Ve sầu chăm chỉ hát ca'},
+ {before:'Con bò ăn',after:'ỏ trên đồng.',answer:'c',sentence:'Con bò ăn cỏ trên đồng.'},
+ {before:'Đàn bò tung tăng',after:'ặm cỏ',answer:'g',sentence:'Đàn bò tung tăng gặm cỏ'},
+ {before:'Bà chăm sóc em',after:'é ân cần',answer:'b',sentence:'Bà chăm sóc em bé ân cần'},
+ {before:'Bé Na xem',after:'i vi',answer:'t',sentence:'Bé Na xem ti vi'},
+ {before:'Mùa gặt đến, làng quê',after:'ộn ràng',answer:'r',sentence:'Mùa gặt đến, làng quê rộn ràng'},
+ {before:'Những ngọn đuốc',after:'áng rực',answer:'s',sentence:'Những ngọn đuốc sáng rực'},
+ {before:'Đàn gà nhặt thóc vương trên',after:'ân',answer:'s',sentence:'Đàn gà nhặt thóc vương trên sân'}
+];
+const questions=[
+ {q:'Câu 1: Từ nào khác với các từ còn lại?',opts:['A. con sóc','B. con mắt','C. con vẹt','D. con ốc'],ans:1},
+ {q:'Câu 2: Từ nào chứa tiếng có chung vần với tiếng “băng”?',opts:['A. càng cua','B. lá bàng','C. vầng trăng','D. nhà tầng'],ans:2},
+ {q:'Câu 3: Những vần nào có trong câu văn sau: “Cơn mưa chợt ngừng, đám trẻ con liền ùa ra sân.”',opts:['A. ơn, iên, ân','B. an, yên, on','C. ôn, ông, ương','D. in, iêm, ân'],ans:0},
+ {q:'Câu 4: Dòng nào chỉ gồm các từ chứa tiếng có vần “ân”?',opts:['A. nhà tầng, bàn chân','B. thân thương, chân thật','C. sân nhà, tấm thảm','D. lan can, nhà sàn'],ans:1},
+ {q:'Câu 5: Dòng nào chỉ gồm các tiếng có vần “un”?',opts:['A. kim, nhím, nhóm','B. chín, sim, tím','C. lợn, sơn, mụn','D. bún, giun, cún'],ans:3},
+ {q:'Câu 6: Chọn chữ thích hợp để điền vào chỗ chấm: “…á sen, ….úa nếp”.',opts:['A. t','B. đ','C. n','D. l'],ans:3},
+ {q:'Câu 7: Chọn vần thích hợp để điền vào chỗ chấm: “Chú Lê rất đ… mê âm nhạc dân tộc.”',opts:['A. ăm','B. om','C. êm','D. am'],ans:3},
+ {q:'Câu 8: Từ nào viết đúng chính tả?',opts:['A. lắng nghe','B. nắng nghe','C. lắng nge','D. nắng nge'],ans:0},
+ {q:'Câu 9: Từ nào viết sai chính tả trong câu “Bé giúp đỡ mẹ thu giọn nhà cửa gọn gàng.”?',opts:['A. gọn gàng','B. nhà cửa','C. giúp đỡ','D. thu giọn'],ans:3},
+ {q:'Câu 10: Tên các sự vật trong hình có chung vần gì?',opts:['A. ông','B. ung','C. ang','D. ăng'],ans:0}
+];
+let selectedLeft=null, matched=new Set(), answersShown=false;
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function renderPairs(){
+ const left=document.getElementById('leftWords'),right=document.getElementById('rightWords');
+ left.innerHTML='';right.innerHTML='';
+ pairs.forEach((p,i)=>{let b=document.createElement('button');b.className='word-btn';b.textContent=p[0];b.dataset.i=i;b.onclick=()=>selectLeft(i,b);left.appendChild(b)});
+ shuffle(pairs.map((p,i)=>({word:p[1],i}))).forEach(o=>{let b=document.createElement('button');b.className='word-btn';b.textContent=o.word;b.dataset.i=o.i;b.onclick=()=>selectRight(o.i,b);right.appendChild(b)});
+}
+function selectLeft(i,b){if(matched.has(i))return;selectedLeft=i;document.querySelectorAll('#leftWords .word-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}
+function selectRight(i,b){
+ if(selectedLeft===null||matched.has(i))return;
+ if(selectedLeft===i){matched.add(i);document.querySelectorAll(`[data-i="${i}"]`).forEach(x=>x.classList.add('matched'));document.querySelectorAll(`[data-i="${i}"]`).forEach(x=>x.classList.remove('selected'));document.getElementById('matchStatus').textContent=`Tuyệt vời! Đã nối đúng ${matched.size}/10 cặp.`}
+ else{b.classList.add('wrong');setTimeout(()=>b.classList.remove('wrong'),350);document.getElementById('matchStatus').textContent='Chưa đúng rồi, em hãy thử lại nhé!';}
+ selectedLeft=null;document.querySelectorAll('#leftWords .word-btn').forEach(x=>x.classList.remove('selected'));updateProgress();
+}
+function renderFills(){document.getElementById('fillList').innerHTML=fills.map((f,i)=>`<div class="fill-row"><div class="num">Câu ${i+1}</div><p>${f.before} <input id="fill${i}" aria-label="Điền chữ câu ${i+1}" autocomplete="off" maxlength="2" style="width:58px;max-width:22%" />${f.after ? ' '+f.after : ''}</p></div>`).join('')}
+function renderQuiz(){document.getElementById('quiz').innerHTML=questions.map((q,i)=>`<div class="question"><p>${q.q}</p><div class="options">${q.opts.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div></div>`).join('')}
+function norm(s){return (s||'').trim().toLocaleLowerCase('vi').replace(/\s+/g,' ')}
+function updateProgress(){let done=matched.size+fills.filter((f,i)=>norm(document.getElementById('fill'+i)?.value)===norm(f.answer)).length+questions.filter((q,i)=>document.querySelector(`input[name="q${i}"]:checked`)?.value==q.ans).length;document.getElementById('liveScore').textContent=done;document.getElementById('progressBar').style.width=(done/30*100)+'%'}
+function checkAll(){
+ let pScore=matched.size, fScore=0,qScore=0;
+ fills.forEach((f,i)=>{let el=document.getElementById('fill'+i);let ok=norm(el.value)===norm(f.answer);el.style.borderColor=ok?'#56bd83':'#f07d8a';if(ok)fScore++});
+ questions.forEach((q,i)=>{let chosen=document.querySelector(`input[name="q${i}"]:checked`);if(chosen&&Number(chosen.value)===q.ans)qScore++});
+ let total=pScore+fScore+qScore;
+ document.getElementById('finalScore').textContent=`${total}/30 điểm`;
+ document.getElementById('resultTitle').textContent=total>=27?'Xuất sắc! Em là nhà vô địch!':total>=22?'Rất tốt! Em gần chạm đích rồi!':total>=15?'Cố gắng tốt! Hãy ôn thêm nhé!':'Đừng nản lòng! Thử lại để tiến bộ hơn nhé!';
+ document.getElementById('feedback').textContent=total>=27?'🏆 Tuyệt vời, em đã chinh phục gần hết thử thách!':'Mỗi lần luyện tập là một lần học thêm điều mới.';
+ document.getElementById('detail').textContent=`Phần 1: ${pScore}/10 cặp đúng • Phần 2: ${fScore}/10 câu đúng • Phần 3: ${qScore}/10 câu đúng.`;
+ document.getElementById('resultEmoji').textContent=total>=27?'🏆':total>=15?'🌟':'💪';
+ document.getElementById('result').classList.add('show');updateProgress();document.getElementById('result').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function showAnswers(){const box=document.getElementById('answerKey');box.style.display=box.style.display==='none'?'block':'none';box.innerHTML='<h3>Đáp án tham khảo</h3><b>Phần 1:</b><br>'+pairs.map(p=>p[0]+' – '+p[1]).join('<br>')+'<br><br><b>Phần 2:</b><br>'+fills.map((f,i)=>`Câu ${i+1}: ${f.sentence}`).join('<br>')+'<br><br><b>Phần 3:</b><br>'+questions.map((q,i)=>`Câu ${i+1}: ${q.opts[q.ans]}`).join('<br>')}
+function resetAll(){matched=new Set();selectedLeft=null;document.getElementById('result').classList.remove('show');document.getElementById('answerKey').style.display='none';renderPairs();renderFills();renderQuiz();updateProgress();document.getElementById('matchStatus').textContent='Đã nối đúng 0/10 cặp. Chọn một từ ở mỗi cột để nối nhé!';window.scrollTo({top:0,behavior:'smooth'})}
+document.addEventListener('input',e=>{if(e.target.matches('input'))updateProgress()});
+document.addEventListener('change',e=>{if(e.target.matches('input[type=radio]'))updateProgress()});
+renderPairs();renderFills();renderQuiz();updateProgress();
+</script>
+</body>
+</html>
